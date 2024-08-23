@@ -36,7 +36,7 @@ Die Web App ist mit dem Framework [**Streamlit**](https://streamlit.io/) erstell
 
 ## Voraussetzungen und Anforderungen
 
-Das Limit für Anfragen (bzw. Aufträge) summiert über alle User/innen ist mittels der SQL Klasse SQL_Klasse_Tracker implementiert, welche die Summe aller verarbeiteten Aufträge in einem spezifischen Zeitraum überwacht (definiert in Constants.py). The Web App soll mit Heroku deployed werden und nutzt das [**PostgreSQL database add-on**](https://elements.heroku.com/addons/heroku-postgresql). Wenn du die App lokal nutzen möchtest, musst du auf die PostgresSQL Datenbank remote zugreifen.
+Das Limit für Anfragen (bzw. Aufträge) summiert über alle User/innen ist mittels der SQL Klasse SQL_Klasse_Tracker implementiert, welche die Summe aller verarbeiteten Aufträge in einem spezifischen Zeitraum überwacht (definiert in Constants.py). The Web App soll mit Heroku deployed werden und nutzt das [**PostgreSQL Database Add-on**](https://elements.heroku.com/addons/heroku-postgresql). Wenn du die App lokal nutzen möchtest, musst du auf die PostgresSQL Datenbank remote zugreifen.
 
 Die Datei requirements.txt enthält die Packages für das Deployment bei Heroku.
 
