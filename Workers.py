@@ -144,7 +144,7 @@ class SQL_Worker:
         machine.
         """
         Pfad_aktuell = subprocess.Popen(
-            Constants.Pfad_DB_lokal,
+            Constants.PFAD_DB_LOKAL,
             shell=True,
             stdout=subprocess.PIPE
         ).stdout.read()
@@ -491,7 +491,7 @@ class Scraper_Worker:
                     elif Flagge_alle_Artikel == True:
                         Url = f''
 
-                self.Payload = {'api_key': Constants.Schluessel, 'url': Url}
+                self.Payload = {'api_key': Constants.SCHLUESSEL, 'url': Url}
 
                 self._Funk_HTML_Objekt_erstellen()
                 self._Funk_HTML_Objekt_erste_Seite_pruefen()

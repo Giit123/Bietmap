@@ -6,10 +6,10 @@
 LOKALE_IP = ''
 
 # Path to remote database on local machine
-Pfad_DB_lokal = ''
+PFAD_DB_LOKAL = ''
 
 # Key for scraperapi
-Schluessel = ''
+SCHLUESSEL = ''
 
 # Average seconds to sleep between scraping of two pages of the Kleinanzeigen website
 SCHLAFEN_SEKUNDEN = 3
