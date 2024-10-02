@@ -2,7 +2,13 @@
 
 (German version below!)
 
-Welcome to Bietmap! With this web app, you can explore the regional distribution of offers on a well known Kleinanzeigen website in germany.
+Welcome to Bietmap! With this web app, you can explore the regional distribution of offers on a well known Kleinanzeigen website in germany. For example, the following map shows the locations of the 50 latest offers for the search term "Rolex" (the picture was taken on October 1, 2024):
+
+![Preview_1_png](Preview_1.png)
+
+The next map shows the number of offers per one million inhabitants in each of the 16 states of germany. For these calculations, _all_ offers listed on the Kleinanzeigen website were included, not just the latest 50. As you can see, this statistic was highest in Hamburg: there were 451 offers per one million inhabitants. Hamburg has the [highest density of millionaires](https://www.ndr.de/nachrichten/hamburg/Neue-Statistik-Groesste-Millionaersdichte-in-Hamburg,millionaere188.html).
+
+![Preview_2_png](Preview_2.png)
 
 The design of the code is based on the [**observer design pattern**](https://refactoring.guru/design-patterns/observer) in the broadest sense: One single instance of the class Eventmanager serves as a coordinator between the classes Scraper_Worker, Analyzer_Worker and User_Interface. This instance (named Eventmanager_A in the file Bietmap.py) has an attribute _Events_Dict. This is a dictionary that contains the names of specific events as keys and the subscriber functions and their parameter as values (as another dictionary).
 
@@ -24,19 +30,25 @@ To actually use the web app, there are some to-dos which are not described here 
 
 
 --------------------------------------------------------------------------------------------------------------
-## Deutsche Version
+# Deutsche Version
 
-Willkommen bei Bietmap! Mit dieser Web App kannst du die regionale Verteilung von Anzeigen einer bekannten Kleinanzeigen Website aus Deutschland erkunden.
+Willkommen bei Bietmap! Mit dieser Web App kannst du die regionale Verteilung von Anzeigen einer bekannten Kleinanzeigen Website aus Deutschland erkunden. Beispielsweise zeigt die folgende Karte die Standorte der 50 neuesten Anzeigen für den Suchbegriff "Rolex" (das Bild wurde am 1. Oktober 2024 aufgenommen):
+
+![Preview_1_png](Preview_1.png)
+
+Die nächste Karte zeigt die Anzahl der Anzeigen je einer Million Einwohner/-innen in jedem der 16 Bundestaaten. Bei diesen Berechnungen wurden _alle_ gelisteten Anzeigen der Kleinanzeigen Website einbezogen, nicht nur die neuesten 50. Wie du sehen kannst, war diese Statistik in Hamburg am höchsten: Dort gab es 451 Anzeigen je einer Million Einwohner/-innen. Hamburg hat die [höchste Dichte an Millionären/Millionärinnen](https://www.ndr.de/nachrichten/hamburg/Neue-Statistik-Groesste-Millionaersdichte-in-Hamburg,millionaere188.html).
+
+![Preview_2_png](Preview_2.png)
 
 Das Design des Codes basiert im weitesten Sinne auf dem [**Observer Design Pattern**](https://refactoring.guru/design-patterns/observer): Eine Instanz der Klasse Eventmanager dient als Koordinator der Klassen Scraper_Worker, Analyzer_Worker und User_Interface. Diese Instanz (mit dem Namen Eventmanager_A in der Datei Bietmap.py) besitzt ein Attribut _Events_Dict. Dies ist ein Dictionary, welches die Namen von spezifischen Events als Keys und die Subscriber Funktionen und deren Parameter als Values enthält (als ein weiteres Dictionary).
 
-Das Main Script der Web App ist also Bietmap.py. Um zu funktionieren, braucht die Web App jeweils nur eine Instanz der Eventmanager, Scraper_Worker, Analyzer_Worker und User_Interface Klasse (die Objekte mit dem Namen Eventmanager_A, Scraper_Worker_A, Analyzer_Worker_A und User_Interface_A). Die Objekte Scraper_Worker_A und Analyzer_Worker_A erhalten ihre "Jobs" vom Objekt Eventmanager_A, sofern sie Abonnenten eines Events sind. Zum Beispiel ist das Objekt Sraper_Worker_A ein Abonnent des Events "Button_gedrueckt". Wenn also ein/e Nutzer/in den Button im User Interface drückt, um einen neuen Scraping-Auftrag zu initiieren, wird zunächst an den Eventmanager_A signalisiert, das ein Event stattgefunden hat (suche nach "Funk_Event_eingetreten" in User_Interface.py). Darauf benachrichtigt der Eventmanager_A jede Abonnenten-Funktion dieses Events und übergibt notwendige Argumente an diese Abonnenten-Funktionen. Im Falle vom Scraper_Worker_A bedeutet dies, dass dessen Methode "_Funk_Auftrag_annehmen" eine Abonnenten-Funktion des Events "Button_gedrueckt" ist. Nachdem der Scraper_Worker_A die ganze Scraping-bezogene Arbeit verrichtet hat, veröffentlicht er ein weiteres Event an den Eventmanager_A mit dem Namen "Fertig_geschuerft". Nun kann der Analyzer_Worker_A seine Arbeit nach demselben Prinzip aufnehmen.
+Das Main Script der Web App ist also Bietmap.py. Um zu funktionieren, braucht die Web App jeweils nur eine Instanz der Eventmanager, Scraper_Worker, Analyzer_Worker und User_Interface Klasse (die Objekte mit dem Namen Eventmanager_A, Scraper_Worker_A, Analyzer_Worker_A und User_Interface_A). Die Objekte Scraper_Worker_A und Analyzer_Worker_A erhalten ihre "Jobs" vom Objekt Eventmanager_A, sofern sie Abonnenten eines Events sind. Zum Beispiel ist das Objekt Scraper_Worker_A ein Abonnent des Events "Button_gedrueckt". Wenn also ein/e Nutzer/in den Button im User Interface drückt, um einen neuen Scraping-Auftrag zu initiieren, wird zunächst an den Eventmanager_A signalisiert, das ein Event stattgefunden hat (suche nach "Funk_Event_eingetreten" in User_Interface.py). Darauf benachrichtigt der Eventmanager_A jede Abonnenten-Funktion dieses Events und übergibt notwendige Argumente an diese Abonnenten-Funktionen. Im Falle vom Scraper_Worker_A bedeutet dies, dass dessen Methode "_Funk_Auftrag_annehmen" eine Abonnenten-Funktion des Events "Button_gedrueckt" ist. Nachdem der Scraper_Worker_A die ganze Scraping-bezogene Arbeit verrichtet hat, veröffentlicht er ein weiteres Event an den Eventmanager_A mit dem Namen "Fertig_geschuerft". Nun kann der Analyzer_Worker_A seine Arbeit nach demselben Prinzip aufnehmen.
 
-Die Web App ist mit dem Framework [**Streamlit**](https://streamlit.io/) erstellt. Das wichtigste Merkmal von Streamlit ist, dass das Main-Skript der Web App (Bietmap.py) erneut von Anfang bis Ende durchlaufen wird, wann immer der/die User/in einen Button drückt. Buttons können auf [unterschiedliche Weise](https://docs.streamlit.io/library/advanced-features/button-behavior-and-examples) genutzt werden, um nachfolgende Durchläufe des Main-Skripts zu beeinflussen. In dieser Web App erfolgt die 'Kommunikation' zwischen verschiedenen Durchläufen mittels des Streamlit Features [session_state](https://docs.streamlit.io/library/api-reference/session-state), welches die Speicherung von Informationen zwischen verschiedenen Runs erlaubt. Somit werden die Ergebnisse der bereits verarbeiteten Aufträge eines/er User/in in diesem session_state gespeichert (suche nach "_Funk_Ergebnisse_speichern" in der Analyzer_Worker Klasse).
+Die Web App ist mit dem Framework [**Streamlit**](https://streamlit.io/) erstellt. Das wichtigste Merkmal von Streamlit ist, dass das Main-Skript der Web App (Bietmap.py) erneut von Anfang bis Ende durchlaufen wird, wann immer der/die User/-in einen Button drückt. Buttons können auf [unterschiedliche Weise](https://docs.streamlit.io/library/advanced-features/button-behavior-and-examples) genutzt werden, um nachfolgende Durchläufe des Main-Skripts zu beeinflussen. In dieser Web App erfolgt die 'Kommunikation' zwischen verschiedenen Durchläufen mittels des Streamlit Features [session_state](https://docs.streamlit.io/library/api-reference/session-state), welches die Speicherung von Informationen zwischen verschiedenen Runs erlaubt. Somit werden die Ergebnisse der bereits verarbeiteten Aufträge eines/er User/-in in diesem session_state gespeichert (suche nach "_Funk_Ergebnisse_speichern" in der Analyzer_Worker Klasse).
 
 ## Voraussetzungen und Anforderungen
 
-Das Limit für Anfragen (bzw. Aufträge) summiert über alle User/innen ist mittels der SQL Klasse SQL_Klasse_Tracker implementiert, welche die Summe aller verarbeiteten Aufträge in einem spezifischen Zeitraum überwacht (definiert in Constants.py). The Web App soll mit Heroku deployed werden und nutzt das [**PostgreSQL Database Add-on**](https://elements.heroku.com/addons/heroku-postgresql). Wenn du die App lokal nutzen möchtest, musst du auf die PostgresSQL Datenbank remote zugreifen.
+Das Limit für Anfragen (bzw. Aufträge) summiert über alle User/-innen ist mittels der SQL Klasse SQL_Klasse_Tracker implementiert, welche die Summe aller verarbeiteten Aufträge in einem spezifischen Zeitraum überwacht (definiert in Constants.py). The Web App soll mit Heroku deployed werden und nutzt das [**PostgreSQL Database Add-on**](https://elements.heroku.com/addons/heroku-postgresql). Wenn du die App lokal nutzen möchtest, musst du auf die PostgresSQL Datenbank remote zugreifen.
 
 Die Datei requirements.txt enthält die Packages für das Deployment bei Heroku.
 
@@ -44,4 +56,4 @@ Das Deployment erfolgte mit Python 3.11.5. Der Code ist mittels des Seperators "
 
 ## Disclaimer
 
-Um die Web App tatsächlich zu nutzen, sind einige weitere Aufgaben zu erledigen, die hier nicht beschrieben wurden, weil der Autor nicht zum Web Scraping der Seite ermutigen möchte (solches ist nämlich nicht erlaubt). Der Code dient nur allgemeinen Demonstrationszwecken. Es sei außerdem darauf hingewiesen, dass [keine Lizenz](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) für dieses Projekt vorliegt, sodass eine (Weiter-)verwendung dieses Codes nicht erlaubt ist.
+Um die Web App tatsächlich zu nutzen, sind einige weitere Aufgaben zu erledigen, die hier nicht beschrieben wurden, weil der Autor nicht zum Web Scraping der Seite ermutigen möchte (solches ist nämlich nicht erlaubt). Der Code dient nur allgemeinen Demonstrationszwecken. Es sei außerdem darauf hingewiesen, dass [**keine Lizenz**](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) für dieses Projekt vorliegt, sodass eine (Weiter-)verwendung dieses Codes nicht erlaubt ist.
