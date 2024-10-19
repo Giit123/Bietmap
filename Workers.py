@@ -1049,8 +1049,8 @@ class Analyzer_Worker:
 
             Plz = Arg_Buch_Anzeigen[x]['PLZ']
 
-            # komdoku: If there is already an offer with the same PLZ, change the longitude for the
-            # marker slightly to make the markers distinguishable
+            # If there is already an offer with the same PLZ, change the longitude for the marker
+            # slightly to make the markers distinguishable
             if Plz in Buch_Laengengrade:
                 Laengengrad = Buch_Laengengrade[Plz] + 0.002
                 Buch_Laengengrade[Plz] = Buch_Laengengrade[Plz] + 0.002
