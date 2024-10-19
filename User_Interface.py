@@ -597,13 +597,13 @@ class User_Interface:
                         streamlit.markdown('''**_HINWEIS:_** Eine interaktive Karte zum Einkommen
                             findest du
                             [hier](https://www.wsi.de/de/einkommen-14582-einkommen-im-regionalen-vergleich-40420.htm)
-                            bei der Hans-Böckler-Stiftung (ACHTUNG!: Die Daten im Link stammen aus
+                            bei der Hans-Böckler-Stiftung (ACHTUNG!: Die Daten im Link sind von
                             2019 und entsprechen nicht den Daten, die in dieser Web App verwendet
                             wurden!).''')
                         streamlit.markdown('''Eine interaktive Karte zur Alterstruktur der
                             Bundesländer findest du
-                            [hier](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/karte-altersgruppen.html)                  
-                            beim statistischen Bundesamt (ACHTUNG!: Die Daten im Link stammen aus
+                            [hier](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/karte-altersgruppen.html)
+                            beim statistischen Bundesamt (ACHTUNG!: Die Daten im Link sind von
                             2011 und entsprechen nicht den Daten, die in dieser Web App verwendet
                             wurden!).''')
                         
