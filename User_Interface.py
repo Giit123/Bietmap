@@ -226,9 +226,8 @@ class User_Interface:
                 streamlit.markdown('''Mit dieser Web App kannst du nach Kleinanzeigen in ganz
                     Deutschland suchen und deren Standorte auf einer Karte anzeigen lassen.
                     So kannst du etwa untersuchen, ob bestimmte Artikel in deinem Bundesland
-                    häufiger angeboten werden als in einem anderen. Nutze dazu die Optionen.
-                    Auf dem Handy musst du nach oben scrollen, um die Optionen zu sehen,
-                    [hierhin](#suchbegriff). Die Optionen werden gleich erklärt.
+                    häufiger angeboten werden als in einem anderen. Nutze dazu die 
+                    [Optionen](#suchbegriff). Die Optionen werden [gleich](#a5d6750b) erklärt.
                     Um eine Suche zu starten, drücke den Button unter den Optionen mit dem Namen
                     "BUTTON: Suche starten!". Die Ergebnisse für deine Suchen werden jeweils
                     in einem App-internen Tab dargestellt (maximal 3 Stück).
@@ -242,23 +241,24 @@ class User_Interface:
                     wiederfinden lassen._**''')
                 
                 streamlit.markdown('#### **Erklärung der Optionen:**')
+                streamlit.write('''Die folgenden zwei einstellbaren Optionen werden nur Karte 1
+                    (Anzeigenstandorte) beeinflussen, aber nicht Karte 2 (ANZEIGENQUOTE_TOTAL in
+                    Bundesländern)! Die Erläuterung der Karten findest du
+                    [hier](#5ac7a061).''')
+                streamlit.write('''_Anzeigenanzahl:_ Mit dieser Option kannst du festlegen, wie
+                    viele Anzeigen maximal in deine Stichprobe aufgenommen werden sollen!''')
+                streamlit.write('''_Max. Anzeigenalter:_ Mit dieser Option kannst du festlegen, wie
+                    alt die gefundenen Anzeigen maximal sein dürfen (in Tagen). Die Anzeigen werden
+                    nach ihrer Aktualität sortiert und die aktuellsten in deine Stichprobe
+                    aufgenommen!''')
                 streamlit.write('''Dein Suchbegriff wird automatisch in Kleinbuchstaben
                     umgewandelt!''')
-                streamlit.write('''Auf folgenden Einstellungen werden die Anzeigen für Karte 1
-                    (Anzeigenstandorte) beruhen, aber nicht für Karte 2
-                    (ANZEIGENQUOTE_TOTAL in Bundesländern)!
-                    [Zur Erläuterung der Karten](#5ac7a061).''')
-                streamlit.write('''_Anzeigenanzahl:_ Hier kannst du festlegen, wie viele Anzeigen
-                    maximal in deine Stichprobe aufgenommen werden sollen!''')
-                streamlit.write('''_Max. Anzeigenalter:_ Hier kannst du festlegen, wie alt die
-                    gefundenen Anzeigen maximal sein dürfen (in Tagen). Die Anzeigen werden nach
-                    ihrer Aktualität sortiert und in entsprechender Reihenfolge in deine Stichprobe
-                    aufgenommen!''')
 
                 streamlit.markdown('#### **Erläuterung der Karten:**')
                 streamlit.write('''Die Ergebnisse deiner Suche werden auf zwei
                     verschiedenen Karten visualisiert:''')
-                streamlit.write('''_Karte 1 (Anzeigenstandorte):_ Hier wird dir jede gefundene
+                streamlit.write('''_Karte 1 (Anzeigenstandorte):_ Diese Karte wird von deinen
+                    Einstellungen in den Optionen beeinflusst. Hier wird dir jede gefundene
                     Anzeige als Marker auf der Deutschlandkarte angezeigt. Falls viele Anzeigen in
                     einer Stadt gefunden worden sind, musst du vielleicht etwas in die Karte
                     reinzoomen, um die Marker zu unterscheiden! Die Anzeigenstandorte bzw. Marker
@@ -266,32 +266,43 @@ class User_Interface:
                     mit Geodaten verwendet, die jeder Postleitzahl genau einen Standort zuordnet.
                     Die Marker befinden sich also nicht immer _exakt_ an den Standorten /
                     Stadtteilen der Anzeigen!''')
-                streamlit.write('''_Karte 2 (ANZEIGENQUOTE_TOTAL in Bundesländern):_ Hier werden
-                    dir je Bundesland die gefundenen Anzeigen pro Million Einwohner angezeigt.
+                streamlit.write('''_Karte 2 (ANZEIGENQUOTE_TOTAL in Bundesländern):_ Diese Karte
+                    wird NICHT von deinen Einstellungen in den Optionen beeinflusst. Anstatt dessen
+                    werden die Angaben aus den Filtern der Kleinanzeigen-Website genutzt, mit
+                    welchen die Anzeigen nach (Bundes-)ländern gefiltert werden können.
+                    Die Anzahl der Anzeigen in diesen Filtern ist in der Regel größer als die der
+                    Anzeigen aus Karte 1 (Anzeigenstandorte). Es werden in den Filtern nämlich
+                    _alle_ Anzeigen auf Kleinanzeigen unabhängig deiner Einstellungen in den
+                    Optionen dieser Web App berücksichtigt. Durch Verwendung dieser größeren Zahlen
+                    sind die Auswertungen in Karte 2 und die weiteren Berechnungen aussagekräftiger.
+                    Hier auf Karte 2 werden dir also je Bundesland die gefundenen Anzeigen pro
+                    Million Einwohner angezeigt. Es geht also um die Anzeigenquote je Bundesland,
+                    bezogen auf die totale Menge von auffindbaren Anzeigen bei Kleinanzeigen.
+                    Dementsprechend wird diese Variable in der Web App mit "ANZEIGENQUOTE_TOTAL"
+                    bezeichnet.
                     Da sich die Bundesländer bzw. deren Einwohner aber auch in weiteren
-                    [Variablen](#4da307ae) unterscheiden, biete sich vielfältige
+                    [Variablen](#4da307ae) unterscheiden, bieten sich vielfältige
                     Interpretationsmöglichkeiten. Überlege dir z. B., welchen Einfluss die
                     Einwohnerdichte, die Alterstruktur oder das Einkommen auf die Ergebnisse zu
-                    deinem spezifischen Artikel haben könnten. Deshalb bekommst in den weiteren
-                    Auswertungen auch einen Einblick in diese Variablen.''')
-                streamlit.write('''Zudem wird dir auch eine Tabelle mit den Rohdaten deines
-                    Auftrags angezeigt. Die Datenquellen externer Daten findest du
+                    deinem spezifischen Artikel haben könnten.''')
+                streamlit.write('''Zudem wird dir eine Tabelle mit den Rohdaten deines Auftrags
+                    angezeigt. Die Quellen externer Daten findest du
                     [unten](#datenquellen).''')
                 
                 streamlit.markdown('#### **Erläuterung der Variablen:**')
                 streamlit.write('''**_Die Auflistung erfolgt in alphabetischer Reihenfolge!
-                    Die Variablen beziehen sich jeweils auf ein Bundesland. Die Datenquellen
-                    externer Daten findest du [unten](#datenquellen)._**''')
+                    Die Variablen beziehen sich jeweils auf ein Bundesland. Die Quellen externer
+                    Daten findest du [unten](#datenquellen)._**''')
                 streamlit.write('''_Alter_0_17_: Prozentualer Anteil der Bevölkerung mit einem
                     Alter bis einschließlich 17 Jahren.''')
                 streamlit.write('''_Alter_18_65_: Prozentualer Anteil der Bevölkerung mit einem
-                    Alter von 18 bis 65 Jahren.''')
+                    Alter von 18 bis einschließlich 65 Jahren.''')
                 streamlit.write('''_Alter_66_100_: Prozentualer Anteil der Bevölkerung mit einem
                     Alter von mindestens 66 Jahren.''')
                 streamlit.write('_Alter_Mittelwert_: Mittelwert des Alters über alle Personen.')
                 streamlit.write('''_Anzeigenanzahl_: Dies ist die absolute Anzeigenzahl, welche
-                    durch die Suche mit den von dir eingestellten Parametern in den Optionen
-                    gefunden wurde. Dies Anzahl von Anzeigen erscheint in Karte 1
+                    durch die Suche mit den von dir in den Optionen eingestellten Parametern
+                    gefunden wurde. Diese Anzahl von Anzeigen erscheint in Karte 1
                     (Anzeigenstandorte).''')
                 streamlit.write('''_Anzeigenanzahl_erwartet_: siehe zunächst Definition
                     der Variable "Anzeigenanzahl". Die erwartete Anzeigenanzahl
@@ -300,16 +311,17 @@ class User_Interface:
                 streamlit.write('''_Anzeigenanzahl_total_: Dies ist die absolute Anzeigenzahl,
                     welche auf den Angaben aus den Filtern der Kleinanzeigen-Website beruht.
                     Hier werden also _alle_ Anzeigen berücksichtigt, die auf Kleinanzeigen für
-                    deinen Suchbegriff gefunden worden.''')
+                    deinen Suchbegriff gefunden wurden.''')
                 streamlit.write('''_Anzeigenanzahl_total_erwartet_: siehe zunächst Definition
                     der Variable "Anzeigenanzahl_total". Die erwartete Anzeigenanzahl_total
                     wäre die, wenn sich alle gefundenen Anzeigen in Deutschland (aus den Filtern)
                     gleich auf die Bundesländer verteilen würden (unter Berücksichtigung der
                     Einwohnerzahl).''')
-                streamlit.write('''_Anzeigenquote_: Dies ist der Quotient aus der Variable
+                streamlit.write(f'''_Anzeigenquote_: Dies ist der Quotient aus der Variable
                     "Anzeigenanzahl" und der Variable "Einwohnerzahl" multipliziert mit 1000000.
                     Dies ist somit die Anzahl der Anzeigen pro Million Einwohner. Diese Zahl
-                    ist aber bei kaum aussagekräftig, da sie auf maximal 100 Anzeigen basiert.''')
+                    ist aber bei kaum aussagekräftig, da sie auf maximal
+                    {Constants.N_GRENZE_STICHPROBE_AUFTRAG} Anzeigen basiert.''')
                 streamlit.write('''_ANZEIGENQUOTE_TOTAL_: Dies ist der Quotient aus der Variable
                     "Anzeigenanzahl_total" und der Variable "Einwohnerzahl" multipliziert mit
                     1000000. Dies ist somit die Anzahl der Anzeigen (in den Filtern)
@@ -335,7 +347,7 @@ class User_Interface:
                     immer ganz ganz ernst gemeint sind. Bedenke auch, dass die Variablen mitunter
                     nicht unabhängig sind, z. B. ist in Städten die Einwohnerdichte höher _und_ das
                     mittlere Alter geringer. Ob also ein Artikel vielleicht deshalb öfter angeboten
-                    wird, weil mehr dort Menschen auf geringem Raum wohnen und / oder mehr junge
+                    wird, weil dort mehr Menschen auf geringem Raum wohnen und / oder mehr junge
                     Menschen dort leben, ist nicht klar. Auf eine direkte Kausalität kann daher
                     ohne Weiteres nicht geschlossen werden. Insbesondere gilt dies auch für
                     Interpretationen hinsichtlich West vs. Ost: Menschen im Westen sind im Mittel
@@ -383,8 +395,7 @@ class User_Interface:
                     finden (Tabellenblatt "2.4").
                     ''')
                 streamlit.write('''Alle Daten hinsichtlich des Durchschnittsalters (d. h. für die
-                    Variable "Alter_Mittelwert") wurden auf statista gefunden, Stand 2022, und
-                    lassen sich
+                    Variable "Alter_Mittelwert") stammen von statista, Stand 2022, und lassen sich
                     [hier](https://de.statista.com/statistik/daten/studie/1093993/umfrage/durchschnittsalter-der-bevoelkerung-in-deutschland-nach-bundeslaendern/)
                     finden.''')
                 streamlit.write('''Alle Daten hinsichtlich der Altersgruppen (d. h. für die
@@ -539,9 +550,9 @@ class User_Interface:
                             "_{Aufgetragen_Suchbegriff}_" nach **{Aufgetragen_Stichprobe}**
                             Anzeigen gesucht, die maximal {Aufgetragen_Max_Anzeigenalter} Tage alt
                             sein dürfen. Es wurden **{Anzeigenanzahl_manuell_gefunden}** Anzeigen
-                            gefunden. Wahrscheinlich existieren also noch mehr Anzeigen als die
-                            gefundene Menge auf Kleinanzeigen. Es wird jedoch nur die gefundene
-                            Menge in Karte 1 (Anzeigenstandorte) abgebildet.''')
+                            gefunden. Wahrscheinlich existieren auf Kleinanzeigen also noch mehr
+                            Anzeigen als die von dir angeforderte Menge auf. Es wird jedoch nur die
+                            angeforderte Menge in Karte 1 (Anzeigenstandorte) abgebildet.''')
                     elif Anzeigenanzahl_manuell_gefunden < Aufgetragen_Stichprobe:
                         streamlit.write(f'''Du hast für deinen Suchbegriff
                             "_{Aufgetragen_Suchbegriff}_" nach **{Aufgetragen_Stichprobe}**
@@ -559,21 +570,21 @@ class User_Interface:
                         (Bundes-)ländern gefiltert werden können. Die Anzahl der Anzeigen in diesen
                         Filtern ist in der Regel größer als die der Anzeigen aus Karte 1
                         (Anzeigenstandorte). Es werden in den Filtern nämlich _alle_ Anzeigen auf
-                        Kleinanzeigen unabhängig deiner Einstellungen in dieser Web App
-                        berücksichtigt. Durch Verwendung dieser größeren Zahlen sind die
-                        Auswertungen in Karte 2 und den anderen Abbildungen aussagekräftiger.
-                        ''')
+                        Kleinanzeigen unabhängig deiner Einstellungen in den Optionen dieser Web
+                        App berücksichtigt. Durch Verwendung dieser größeren Zahlen sind die
+                        Auswertungen in Karte 2 und die weiteren Berechnungen aussagekräftiger:''')
                         
                     streamlit.write(f'''Für deinen Suchbegriff "_{Aufgetragen_Suchbegriff}_" wurden
                         in den Filtern **{Anzeigen_in_Filtern_gefunden}** Anzeigen gefunden. Im
-                        Folgenden wird die Anzeigenzahl, welche auf den Filtern beruht, mit
+                        Folgenden wird die Anzeigenzahl, welche auf diesen Filtern beruht, mit
                         "_Anzeigenanzahl_total_" bezeichnet, d. h. die totale Menge der Anzeigen auf
                         Kleinanzeigen für deinen Suchbegriff. Für jedes Bundesland exisitiert also
                         solch ein Wert, der die totale Menge der Anzeigen in diesem Bundesland
-                        darstellt. Mit "_Anzeigenanzahl_" wird lediglich die Menge bezeichnet, die
-                        mittels der Suche für Karte 1 gefunden wurde.''')
-                    streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                        [unten in der Anleitung](#4da307ae).''')
+                        darstellt.''')
+                    streamlit.write('''Mit "_Anzeigenanzahl_" wird lediglich die Menge bezeichnet,
+                        die mittels der Suche für Karte 1 gefunden wurde.''')
+                    streamlit.markdown('''Eine weitere Erläuterung dieser und weiterer Variablen
+                        findest du [unten in der Anleitung](#4da307ae).''')
 
                     streamlit.markdown('### **Karte 1 (Anzeigenstandorte):**')
                     if streamlit.session_state['Ergebnisse'][x]['Karte_Standorte'] != None:
@@ -599,7 +610,8 @@ class User_Interface:
                             [hier](https://www.wsi.de/de/einkommen-14582-einkommen-im-regionalen-vergleich-40420.htm)
                             bei der Hans-Böckler-Stiftung (ACHTUNG!: Die Daten im Link sind von
                             2019 und entsprechen nicht den Daten, die in dieser Web App verwendet
-                            wurden!).''')
+                            wurden! Die Quellen externer Daten, die in dieser Web App verwendet
+                            wurden, findest du [unten in der Anleitung](#datenquellen)).''')
                         streamlit.markdown('''Eine interaktive Karte zur Alterstruktur der
                             Bundesländer findest du
                             [hier](https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/karte-altersgruppen.html)
@@ -616,14 +628,14 @@ class User_Interface:
                     streamlit.markdown('### **Chi-Quadrat-Test:**')
                     if streamlit.session_state['Ergebnisse'][x]['Chi_Quadrat'] != None:
                         streamlit.write('''Mit dem
-                        [Chi-Quadrat-Test](https://de.wikipedia.org/wiki/Chi-Quadrat-Test) wird die
-                        Hypothese getestet, dass sich die Anzeigen auf alle Bundesländer gleich
-                        verteilen (unter Berücksichtigung der Einwohnerzahl). Eine solche
-                        Gleichverteilung würde sich darin äußern, dass alle Bundesländer in der
-                        obigen Karte 2 gleich gefärbt wären. Ein _p_-Wert < .05 signalisiert eine
-                        Ungleichverteilung. Beachte dabei bitte aber, dass bei Suchbegriffen mit
-                        hunderten Anzeigen die Stichprobe sehr groß ist, sodass ein signifikantes
-                        Ergebnis (d. h. eine Ungleichverteilung) auch zu erwarten ist.''')
+                        [Chi-Quadrat-Test](https://de.wikipedia.org/wiki/Chi-Quadrat-Test) wird
+                        geprüft, ob sich die Anzeigen auf alle Bundesländer gleich verteilen (unter
+                        Berücksichtigung der Einwohnerzahl). Eine solche Gleichverteilung würde
+                        sich darin äußern, dass alle Bundesländer in der obigen Karte 2 gleich
+                        gefärbt wären. Ein _p_-Wert < .05 signalisiert eine Ungleichverteilung.
+                        Beachte dabei bitte aber, dass bei Suchbegriffen mit hunderten Anzeigen die
+                        Stichprobe sehr groß ist, sodass ein signifikantes Ergebnis (d. h. eine
+                        Ungleichverteilung) auch zu erwarten ist.''')
                             
                         Ergebnis_Chi_Quadrat = streamlit.session_state['Ergebnisse'][x]\
                                                 ['Chi_Quadrat']
@@ -680,7 +692,7 @@ class User_Interface:
                         streamlit.markdown('''In den Scatterplots sind nur die relevantesten
                         Variablen aufgeführt. Jeder kleine Punkt repräsentiert eines der 16
                         Bundesländer. Die Histogramme in der Diagonalen entsprechen den
-                        Verteilungen der Variablen. Auch hierbei beruht je ein Histogramm zwar auf
+                        Verteilungen der Variablen. Auch hierbei beruht zwar je ein Histogramm auf
                         16 Datenpunkten, die Beschriftung der Y-Achse ist aber bei den Histogrammen
                         nicht zu beachten. Es handelt sich nämlich bei allen Histogrammen um
                         Häufigkeiten.''')
@@ -708,7 +720,7 @@ class User_Interface:
                                 zum Vergrößern!''')
                             streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
                                 [unten in der Anleitung](#4da307ae).''')
-                            streamlit.write('''Die Datenquellen externer Daten findest du
+                            streamlit.write('''Die Quellen externer Daten findest du
                                 [unten in der Anleitung](#datenquellen).''')
                             
                             Colormap = seaborn.light_palette("#ae272d", as_cmap=True)
