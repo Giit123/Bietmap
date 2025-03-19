@@ -1,0 +1,16 @@
+branca==0.6.0
+folium==0.14.0
+geopandas==0.14.4
+lxml==4.9.2
+matplotlib==3.7.2
+numpy==1.25.2
+pandas==2.0.3
+Pillow==10.3.0
+psycopg2==2.9.3
+Requests==2.31.0
+scipy==1.11.3
+seaborn==0.13.2
+SQLAlchemy==2.0.21
+streamlit==1.33.0
+streamlit_folium==0.13.0
+cssselect==1.2.0
