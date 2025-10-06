@@ -382,7 +382,7 @@ class Scraper_Worker:
         
         self.buch_anzeigen = {}
         self.buch_ergebnisse = copy.deepcopy(streamlit.session_state['Buch_Laender'])
-        self.Antwort_Server_str = ''  
+        self.antwort_server_str = ''  
         
         self.zaehler_anzeigen = None
         self.liste_elemente_anzeige = None
@@ -578,7 +578,7 @@ class Scraper_Worker:
         liste_sections = self.baum_html.cssselect('section')
 
         for section_x in liste_sections:    
-            ueberschriften = section_x.cssselect('h2.sectionheadline')
+            ueberschriften = section_x.cssselect('h3.sectionheadline')
             
             for ueberschrift_x in ueberschriften:
                 if ueberschrift_x.text_content() == 'Ort':
