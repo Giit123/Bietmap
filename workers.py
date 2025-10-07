@@ -71,7 +71,7 @@ class sqlWorker:
         engine_erstellt -- Engine for postgreSQL database\n
         sql_session_macher -- Instance of sessionmaker which works with
         attribute engine_erstellt\n
-        sql_session_erstellt -- Active SQL Session of the instance to
+        sql_session_erstellt -- Active SQL session of the instance to
         work with\n
         tracker_objekt -- Object from database query which holds
         information about the current workload of the web app
@@ -90,9 +90,9 @@ class sqlWorker:
         objects from a list to the database.\n
         _funk_sql_commit -- Executes a controlled commit to the
         database with rollback if failed.\n
-        _funk_sql_neue_session_erstellen -- Renews the SQL Session in
+        _funk_sql_neue_session_erstellen -- Renews the SQL session in
         attribute sql_session_erstellt.\n
-        _funk_sql_session_schliessen -- Closes the SQL Session in
+        _funk_sql_session_schliessen -- Closes the SQL session in
         attribute sql_session_erstellt.\n
         _funk_sql_schema_erstellen -- Creates the SQL database schema.
     """
@@ -268,7 +268,7 @@ class sqlWorker:
             fehler_name = str(type(fehler).__name__)
             helpers.funk_drucken(f'BESTAETIGUNG!: Rollback nach {fehler_name} erfolgreich')  
             try:
-                self.SQL_Session_erstellt.rollback()
+                self.sql_session_erstellt.rollback()
                 helpers.funk_drucken(f'ACHTUNG!: Fehler bei rollback nach {fehler_name}')
             except:
                 pass
@@ -451,7 +451,7 @@ class Scraper_Worker:
         self._funk_schuerfen()
     
 
-    def _Funk_Schuerfen(self):
+    def _funk_schuerfen(self):
         """Scrapes the offers with the help of other private methods after
         receiving the order.
         """
@@ -922,7 +922,7 @@ class AnalyzerWorker:
             self.korrelationen = frame_korrelationen.corr(method='spearman')
     
         except Exception as fehler:
-            helpers.Funk_Drucken('ACHTUNG!: Fehler in _funk_korrelationen_erstellen:')
+            helpers.funk_drucken('ACHTUNG!: Fehler in _funk_korrelationen_erstellen:')
             print(fehler)
 
 
@@ -1266,6 +1266,6 @@ class AnalyzerWorker:
             return(fig_geladen)
         
         except Exception as fehler:
-            helpers.funk_Drucken('ACHTUNG!: Fehler in funk_scatterplots_erstellen:')
+            helpers.funk_drucken('ACHTUNG!: Fehler in funk_scatterplots_erstellen:')
             print(fehler)
             return(None)
