@@ -11,6 +11,6 @@ Requests==2.31.0
 scipy==1.11.3
 seaborn==0.13.2
 SQLAlchemy==2.0.21
-streamlit==1.33.0
+streamlit==1.49.0
 streamlit_folium==0.13.0
 cssselect==1.2.0

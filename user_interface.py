@@ -1,4 +1,4 @@
-"""This module contains the class UserInterface.
+﻿"""This module contains the class UserInterface.
 
 Classes:\n
     UserInterface -- An instance of this class can perform all UI
@@ -92,9 +92,9 @@ class UserInterface:
         """Inits UserInterface.
 
         Keyword arguments:\n
-        init_eventamanager -- Active instance of class Eventmanager
+        init_eventmanager -- Active instance of class Eventmanager
         """
-        self.eventmanager =init_eventmanager
+        self.eventmanager = init_eventmanager
         
         self.spalte_A = None
         self.spalte_B = None
@@ -212,9 +212,8 @@ class UserInterface:
                 self.platzhalter_ausgabe_spinner_02 = streamlit.empty()
                 self.platzhalter_ausgabe_feedback = streamlit.empty()
                 self.platzhalter_ausgabe_ergebnisse = streamlit.empty()
-
-            # Scroll to expander with the name self.expander_ausgabe
-            UserInterface._funk_scrollen(arg_element='div.st-emotion-cache-1bt9eao')
+            
+            UserInterface._funk_scrollen(arg_element='div.st-emotion-cache-18kf3ut')
             
             self.expander_anleitung = streamlit.expander('Anleitung:', expanded=True)
 
@@ -226,7 +225,8 @@ class UserInterface:
                     Deutschland suchen und deren Standorte auf einer Karte anzeigen lassen.
                     So kannst du etwa untersuchen, ob bestimmte Artikel in deinem Bundesland
                     häufiger angeboten werden als in einem anderen. Nutze dazu die 
-                    [Optionen](#suchbegriff). Die Optionen werden [gleich](#a5d6750b) erklärt.
+                    [Optionen](#suchbegriff). Die Optionen werden [gleich](#erklaerung-der-optionen)
+                    erklärt.
                     Um eine Suche zu starten, drücke den Button unter den Optionen mit dem Namen
                     "BUTTON: Suche starten!". Die Ergebnisse für deine Suchen werden jeweils
                     in einem App-internen Tab dargestellt (maximal 3 Stück).
@@ -243,7 +243,7 @@ class UserInterface:
                 streamlit.write('''Die folgenden zwei einstellbaren Optionen werden nur Karte 1
                     (Anzeigenstandorte) beeinflussen, aber nicht Karte 2 (ANZEIGENQUOTE_TOTAL in
                     Bundesländern)! Die Erläuterung der Karten findest du
-                    [hier](#5ac7a061).''')
+                    [hier](#erlaeuterung-der-karten).''')
                 streamlit.write('''_Anzeigenanzahl:_ Mit dieser Option kannst du festlegen, wie
                     viele Anzeigen maximal in deine Stichprobe aufgenommen werden sollen!''')
                 streamlit.write('''_Max. Anzeigenalter:_ Mit dieser Option kannst du festlegen, wie
@@ -280,7 +280,7 @@ class UserInterface:
                     Dementsprechend wird diese Variable in der Web App mit "ANZEIGENQUOTE_TOTAL"
                     bezeichnet.
                     Da sich die Bundesländer bzw. deren Einwohner aber auch in weiteren
-                    [Variablen](#4da307ae) unterscheiden, bieten sich vielfältige
+                    [Variablen](#erlaeuterung-der-variablen) unterscheiden, bieten sich vielfältige
                     Interpretationsmöglichkeiten. Überlege dir z. B., welchen Einfluss die
                     Einwohnerdichte, die Alterstruktur oder das Einkommen auf die Ergebnisse zu
                     deinem spezifischen Artikel haben könnten.''')
@@ -354,7 +354,7 @@ class UserInterface:
                     du auch in der Heatmap, der Clustermap und in den Rohdaten erkennen.''')
                 streamlit.write('''_Rolex_: Hamburg hat die höchste ANZEIGENQUOTE_TOTAL.
                     Dort ist auch die Millionärsdichte in Deutschland am höchsten,
-                    [hier](https://www.ndr.de/nachrichten/hamburg/Neue-Statistik-Groesste-Millionaersdichte-in-Hamburg,millionaere188.html)
+                    [hier](https://hamburg.t-online.de/region/hamburg/id_100615280/hamburg-zahl-der-millionaere-waechst-rasant-sorge-vor-ungleichheit.html)
                     ein Artikel dazu.''')
                 streamlit.write('''_Chanel, Louis Vuitton, Golfschläger, Silberlöffel etc._:
                     Hier zeigt sich ein ähnliches Bild.''')
@@ -377,11 +377,11 @@ class UserInterface:
 
                 streamlit.markdown('#### **Datenquellen:**')
                 streamlit.write('''Die Standortdaten der PLZs aus
-                    [Karte 1](#5ac7a061) stammen von
+                    [Karte 1](#erlaeuterung-der-karten) stammen von
                     [hier](https://github.com/zauberware/postal-codes-json-xml-csv).
                     ''')
                 streamlit.write('''Die Geodaten für die Ländergrenzen in
-                    [Karte 2](#5ac7a061) stammen von
+                    [Karte 2](#erlaeuterung-der-karten) stammen von
                     [hier](https://github.com/isellsoap/deutschlandGeoJSON?tab=readme-ov-file).
                     ''')
                 streamlit.write('''Alle Daten hinsichtlich Einwohnerzahlen und Flächen stammen vom
@@ -456,7 +456,7 @@ class UserInterface:
         # Clear Streamlit URL before running the script again
         streamlit.query_params.clear()
         
-        # Set session_state['Button_gedrueckt'] = True to tell the eventamanager in the subsequent
+        # Set session_state['Button_gedrueckt'] = True to tell the eventmanager in the subsequent
         # run of the main script that there are open jobs
         streamlit.session_state['Button_gedrueckt'] = True
         
@@ -583,7 +583,7 @@ class UserInterface:
                     streamlit.write('''Mit "_Anzeigenanzahl_" wird lediglich die Menge bezeichnet,
                         die mittels der Suche für Karte 1 gefunden wurde.''')
                     streamlit.markdown('''Eine weitere Erläuterung dieser und weiterer Variablen
-                        findest du [unten in der Anleitung](#4da307ae).''')
+                        findest du [unten in der Anleitung](#erlaeuterung-der-variablen).''')
 
                     streamlit.markdown('### **Karte 1 (Anzeigenstandorte):**')
                     if streamlit.session_state['Ergebnisse'][x]['Karte_Standorte'] != None:
@@ -603,7 +603,7 @@ class UserInterface:
                             in den Auswertungen findest. Bewege den Cursor über das Bundesland, um
                             mehr Variablen zu diesem einzusehen!''')
                         streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                            [unten in der Anleitung](#4da307ae).''')
+                            [unten in der Anleitung](#erlaeuterung-der-variablen).''')
                         streamlit.markdown('''**_HINWEIS:_** Eine interaktive Karte zum Einkommen
                             findest du
                             [hier](https://www.wsi.de/de/einkommen-14582-einkommen-im-regionalen-vergleich-40420.htm)
@@ -663,7 +663,7 @@ class UserInterface:
                             Heatmap als auch die Scatterplots beruhen auf Daten, die du
                             [unten in einer Tabelle](#rohdaten) einsehen kannst.''')
                         streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                            [unten in der Anleitung](#4da307ae).''')
+                            [unten in der Anleitung](#erlaeuterung-der-variablen).''')
                         streamlit.image(streamlit.session_state['Ergebnisse'][x]['Heatmap'])
                     elif streamlit.session_state['Ergebnisse'][x]['Heatmap'] == None:
                         streamlit.write('ACHTUNG!: Fehler bei Erstellung der Heatmap!')                    
@@ -681,7 +681,7 @@ class UserInterface:
                             können, ist die Reihenfolge der Zeilen und Spalten in der Clustermap
                             evtl. anders als in der Heatmap!''')         
                         streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                            [unten in der Anleitung](#4da307ae).''')
+                            [unten in der Anleitung](#erlaeuterung-der-variablen).''')
                         streamlit.image(streamlit.session_state['Ergebnisse'][x]['Clustermap'])
                     elif streamlit.session_state['Ergebnisse'][x]['Clustermap'] == None:
                         streamlit.write('ACHTUNG!: Fehler bei Erstellung der Clustermap!')
@@ -696,7 +696,7 @@ class UserInterface:
                         nicht zu beachten. Es handelt sich nämlich bei allen Histogrammen um
                         Häufigkeiten.''')
                         streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                            [unten in der Anleitung](#4da307ae).''')
+                            [unten in der Anleitung](#erlaeuterung-der-variablen).''')
                         streamlit.image(streamlit.session_state['Ergebnisse'][x]['Scatterplots']) 
                     elif streamlit.session_state['Ergebnisse'][x]['Scatterplots'] == None:
                         streamlit.write('ACHTUNG!: Fehler bei Erstellung der Scatterplots!')
@@ -718,7 +718,7 @@ class UserInterface:
                                 den Cursor über die Tabelle und klicke oben rechts auf das Symbol
                                 zum Vergrößern!''')
                             streamlit.markdown('''Eine weitere Erläuterung der Variablen findest du
-                                [unten in der Anleitung](#4da307ae).''')
+                                [unten in der Anleitung](#erlaeuterung-der-variablen).''')
                             streamlit.write('''Die Quellen externer Daten findest du
                                 [unten in der Anleitung](#datenquellen).''')
                             
@@ -778,7 +778,7 @@ class UserInterface:
 
         self.platzhalter_ausgabe_spinner_01.empty()
 
-        UserInterface._funk_scrollen(arg_element='div.st-emotion-cache-1bt9eao')
+        UserInterface._funk_scrollen(arg_element='div.st-emotion-cache-18kf3ut')
 
         streamlit.stop()
 
@@ -793,12 +793,14 @@ class UserInterface:
         arg_element -- HTML element to scroll to
         """
         dummy = datetime.datetime.now().timestamp()
+        
         import_komponenten.html(
-            f"""
-                <p>{dummy}</p>
-                <script>
-                    window.parent.document.querySelector('{arg_element}').scrollIntoView();
-                </script>
-            """,
-            height=0
+            html=
+                f"""
+                    <!--<p>{dummy}</p>-->
+                    <script>
+                        window.parent.document.querySelector('{arg_element}').scrollIntoView();
+                    </script>
+                """,
+            height=1
             )

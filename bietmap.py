@@ -20,6 +20,7 @@ with streamlit.spinner('''Bitte warte einen Moment, bis der Server aufgewacht is
     # Import modules from folder
     import helpers
     import constants
+    from sql_schema import sql_basis
     from sql_schema import sqlKlasseTracker
     from workers import sqlWorker
     from workers import ScraperWorker
